@@ -1,0 +1,26 @@
+language: python
+python: 3.7
+
+dist: xenial    # required for Python 3.7 (travis-ci/travis-ci#9069)
+sudo: required  # required for Python 3.7 (travis-ci/travis-ci#9069)
+
+addons:
+  apt:
+    sources:
+      - deadsnakes
+    packages:
+      - python3.4
+      - python3.5
+      - python3.6
+      - pypy
+
+install:
+  - pip install tox
+
+script:
+  - tox
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
