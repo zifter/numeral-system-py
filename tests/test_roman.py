@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from parameterized import parameterized
 
-from numsys import roman, exceptions
+from numeral_system import roman, exceptions
 
 
 class RomanTestCase(TestCase):
