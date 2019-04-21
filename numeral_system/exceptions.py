@@ -1,4 +1,12 @@
+"""
+All exceptions which can be thrown by this module during work.
+"""
+
+
 class NumericSystemException(BaseException):
+    """
+    Base for all exceptions from this module.
+    """
     pass
 
 

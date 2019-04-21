@@ -93,7 +93,6 @@ def decode(number):
             else:
                 break
 
-    assert len(remain) == 0
+    assert not remain
 
     return result
-
