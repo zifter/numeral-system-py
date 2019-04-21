@@ -49,11 +49,14 @@ def encode(number):
     """
     if not isinstance(number, int):
         raise WrongTypeError('Integer number is expected, but {} was given'.format(type(number)))
+
     if number < 0:
         raise NumberOutOfRangeError('Negative values are not allowed in roman')
-    elif number == 0:
+
+    if number == 0:
         raise NumberOutOfRangeError('Zero values is not allowed in roman')
-    elif number > 3999:
+
+    if number > 3999:
         raise NumberOutOfRangeError(r'Number is too big - roman numbers can\'t be greater or equal 4000')
 
     # TODO Binary search
