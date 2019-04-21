@@ -1,0 +1,11 @@
+version: 0.0.{build}
+init:
+- cmd: choco install python.pypy
+install:
+- cmd: >-
+    python -m pip install --upgrade pip
+
+    pip install tox
+build: off
+test_script:
+- cmd: tox
