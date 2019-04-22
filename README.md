@@ -3,6 +3,16 @@ Convert from one numeric system to other in python.
 Supports following:
 * roman numerals
 
+# Example of usage
+```python
+>>> import numeral_system
+>>> numeral_system.roman.encode(7)
+'VII'
+>>> numeral_system.roman.decode('XXII')
+22
+>>>
+```
+
 [![Release](https://img.shields.io/github/release/zifter/numeral-system-py.svg)][releases-url]
 [![Code Coverage](https://codecov.io/gh/zifter/numeral-system-py/branch/master/graph/badge.svg)][codecov-url]
 [![Build status Appveyor](https://ci.appveyor.com/api/projects/status/github/zifter/numeral-system-py?branch=master&svg=true)][appveyor-url]
