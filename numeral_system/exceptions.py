@@ -9,9 +9,15 @@ class NumericSystemException(BaseException):
     """
 
 
-class WrongTypeError(NumericSystemException):
+class WrongArgumentTypeError(NumericSystemException):
     """
     Occuries when argument type is wrong
+    """
+
+
+class WrongArgumentValueError(NumericSystemException):
+    """
+    Occuries when argument value is wrong
     """
 
 
@@ -23,5 +29,5 @@ class NumberOutOfRangeError(NumericSystemException):
 
 class IncorrectNumberRepresentationError(NumericSystemException):
     """
-    Occuries representation of number is incorrect accoring to numeric system
+    Occuries when representation of number is incorrect according to numeric system
     """
