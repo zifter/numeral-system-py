@@ -5,7 +5,10 @@ The most used are binary, octal, decimal and hexadecimal
 import numbers
 from itertools import groupby
 
-from cachetools import cached
+try:
+    from functools import lru_cache
+except ImportError:
+    from backports.functools_lru_cache import lru_cache
 
 
 from .exceptions import WrongArgumentValueError, WrongArgumentTypeError
@@ -47,7 +50,7 @@ def _sign(number):
     return 0
 
 
-@cached(cache={})
+@lru_cache(maxsize=32)
 def _map_digit_to_int(alphabet):
     """
     Return mapped literal representation to digit
