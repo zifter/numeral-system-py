@@ -172,3 +172,17 @@ class PositionalTestCase(TestCase):
         Check invalid numbers
         """
         self.assertFalse(positional.is_valid(number, base))
+
+    def test_wrong_alphabet(self):
+        """
+        Check negative case with invalid alphabet
+        """
+        with self.assertRaises(exceptions.WrongArgumentValueError):
+            positional.decode(4, 2, alphabet=tuple('12344'))
+
+    def test_wrong_argument_for_encoding(self):
+        """
+        Check negative case with wrong type encoding number
+        """
+        with self.assertRaises(exceptions.WrongArgumentTypeError):
+            positional.encode(4.5, 10)

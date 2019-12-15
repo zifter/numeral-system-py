@@ -83,7 +83,7 @@ def _raise_if_alphabet_is_invalid(base, alphabet):
                                       .format(1, max_base(alphabet=alphabet), base))
 
 
-def _split_digits(number, base, sign_literal):
+def _split_digits(number, sign_literal):
     """
     Split given number per literal and sign
 
@@ -99,12 +99,6 @@ def _split_digits(number, base, sign_literal):
     :return: sign, digits
     :rtype: int, list
     """
-    if base > 10 and not isinstance(number, str):
-        raise WrongArgumentTypeError('Number to encode with base greater 10 should be string')
-
-    if base <= 10 and not isinstance(number, (int, str)):
-        raise WrongArgumentTypeError('Number to encode with base less or equal 10 should be string or integer')
-
     digits = list(str(number))
     sign = 1
     if digits[0] == sign_literal:
@@ -138,7 +132,7 @@ def is_valid(number, base, alphabet=_DEFAULT_ALPHABET, sign_literal=_DEFAULT_SIG
     if not number:
         return False
 
-    _, digits = _split_digits(number, base, sign_literal)
+    _, digits = _split_digits(number, sign_literal)
     for digit in digits:
         if digit not in alphabet[0:base]:
             return False
@@ -219,7 +213,7 @@ def decode(number, base, alphabet=_DEFAULT_ALPHABET, sign_literal=_DEFAULT_SIGN)
     if base <= 10 and not isinstance(number, (int, str)):
         raise WrongArgumentTypeError('Number to encode with base less or equal 10 should be string or integer')
 
-    sign, digits = _split_digits(number, base, sign_literal)
+    sign, digits = _split_digits(number, sign_literal)
     mapping = _map_digit_to_int(alphabet)
     as_literals = reversed(digits)
     return sign * sum((mapping[digit] * pow(base, index) for index, digit in enumerate(as_literals)))
