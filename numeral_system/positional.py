@@ -2,6 +2,7 @@
 Allows convert numbers in different positional numeral system.
 The most used are binary, octal, decimal and hexadecimal
 """
+import numbers
 from itertools import groupby
 
 from cachetools import cached
@@ -164,8 +165,8 @@ def encode(number, base, alphabet=_DEFAULT_ALPHABET, sign_literal=_DEFAULT_SIGN)
     if base <= 10 and isinstance(number, str):
         number = int(number)
 
-    if not isinstance(number, int):
-        raise WrongArgumentTypeError('Number to encode should be integer')
+    if not isinstance(number, numbers.Integral):
+        raise WrongArgumentTypeError('Number to encode should be integer, not {}'.format(type(number)))
 
     number = int(number)
     number_sign = _sign(number)
