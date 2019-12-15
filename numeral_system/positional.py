@@ -10,7 +10,6 @@ try:
 except ImportError:
     from backports.functools_lru_cache import lru_cache
 
-
 from .exceptions import WrongArgumentValueError, WrongArgumentTypeError
 
 
