@@ -3,11 +3,11 @@ This package contains functions for converting integer into roman and backward
 """
 import re
 
-from .exceptions import WrongTypeError, NumberOutOfRangeError, IncorrectNumberRepresentationError
+from .exceptions import WrongArgumentTypeError, NumberOutOfRangeError, IncorrectNumberRepresentationError
 
 
 # order is important
-_ALPHA = (
+_ALPHABET = (
     (1000, 'M'),
     (900, 'CM'),
     (500, 'D'),
@@ -48,7 +48,7 @@ def encode(number):
     :rtype: str
     """
     if not isinstance(number, int):
-        raise WrongTypeError('Integer number is expected, but {} was given'.format(type(number)))
+        raise WrongArgumentTypeError('Integer number is expected, but {} was given'.format(type(number)))
 
     if number < 0:
         raise NumberOutOfRangeError('Negative values are not allowed in roman')
@@ -61,7 +61,7 @@ def encode(number):
 
     # TODO Binary search
     result = ''
-    for num, view in _ALPHA:
+    for num, view in _ALPHABET:
         while number >= num:
             number -= num
             result += view
@@ -80,14 +80,15 @@ def decode(number):
     :rtype: int
     """
     if not isinstance(number, str):
-        raise WrongTypeError('Wrong type of roman number: expected string but {} was given'.format(type(number)))
+        raise WrongArgumentTypeError('Wrong type of roman number: expected string but {} was given'
+                                     .format(type(number)))
 
     if not is_valid(number):
         raise IncorrectNumberRepresentationError('It\'s not a roman string {}'.format(number))
 
     result = 0
     remain = number
-    for num, view in _ALPHA:
+    for num, view in _ALPHABET:
         while True:
             if remain.startswith(view):
                 roman_view_len = len(view)

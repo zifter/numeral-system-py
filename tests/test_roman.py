@@ -3,6 +3,7 @@ Tests for roman numeral system
 """
 from unittest import TestCase
 
+import six
 from parameterized import parameterized
 
 from numeral_system import roman, exceptions
@@ -37,7 +38,7 @@ class RomanTestCase(TestCase):
         ('CCLXXXIII', 283),
         ('MCMLXXXVIII', 1988),
     ])
-    def tests_check_base_numbers_to_roman(self, expected, number):
+    def test_check_base_numbers_to_roman(self, expected, number):
         """
         Manual check if converting is correction
         """
@@ -51,7 +52,7 @@ class RomanTestCase(TestCase):
         ('greater_4000', 4000),
         ('greater_21454', 21454),
     ])
-    def tests_out_of_range_roman_numbers(self, _, number):
+    def test_out_of_range_roman_numbers(self, _, number):
         """
         Check wrong number converting
         """
@@ -63,18 +64,18 @@ class RomanTestCase(TestCase):
         ('float', 1.),
         ('list', []),
     ])
-    def tests_wrong_type_of_number(self, _, number):
+    def test_wrong_type_of_number(self, _, number):
         """
         Check wrong type of passed argument
         """
-        with self.assertRaises(exceptions.WrongTypeError):
+        with self.assertRaises(exceptions.WrongArgumentTypeError):
             roman.encode(number)
 
-    def tests_check_all_digits(self):
+    def test_check_all_digits(self):
         """
         Auto check of all converting
         """
-        for i in range(1, 4000):
+        for i in six.moves.range(1, 4000):
             roman_number = roman.encode(i)
             self.assertEqual(roman.decode(roman_number), i)
 
@@ -83,11 +84,11 @@ class RomanTestCase(TestCase):
         ('float', 1.),
         ('list', []),
     ])
-    def tests_wrong_type_roman_number(self, _, number):
+    def test_wrong_type_roman_number(self, _, number):
         """
         Check wring type of passed argument
         """
-        with self.assertRaises(exceptions.WrongTypeError):
+        with self.assertRaises(exceptions.WrongArgumentTypeError):
             roman.decode(number)
 
     @parameterized.expand([
@@ -96,18 +97,18 @@ class RomanTestCase(TestCase):
         ('list',),
         ('XMX',),
     ])
-    def tests_wrong_representation_roman_number(self, number):
+    def test_wrong_representation_roman_number(self, number):
         """
         Check wrong roman numbers
         """
         with self.assertRaises(exceptions.IncorrectNumberRepresentationError):
             roman.decode(number)
 
-    def tests_check_valid_roman_number(self):
+    def test_check_valid_roman_number(self):
         """
         Check is_valid functions for valid roman numbers
         """
-        for i in range(1, 4000):
+        for i in six.moves.range(1, 4000):
             roman_number = roman.encode(i)
             self.assertTrue(roman.is_valid(roman_number))
 
@@ -117,7 +118,7 @@ class RomanTestCase(TestCase):
         ('list',),
         ('XMX',),
     ])
-    def tests_check_invalid_roman_number(self, number):
+    def test_check_invalid_roman_number(self, number):
         """
         Check is_valid functions for invalid roman numbers
         """
