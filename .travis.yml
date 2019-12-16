@@ -1,5 +1,5 @@
 language: python
-python: 3.7
+python: 3.8
 
 dist: xenial    # required for Python 3.7 (travis-ci/travis-ci#9069)
 sudo: required  # required for Python 3.7 (travis-ci/travis-ci#9069)
@@ -11,11 +11,10 @@ addons:
     packages:
       - python3.5
       - python3.6
-      - python3.8
+      - python3.7
       - pypy
 
 install:
-  - sudo apt-get install python3-distutils
   - pip install tox
 
 script:
