@@ -3,13 +3,16 @@ python: 3.7
 
 dist: xenial    # required for Python 3.7 (travis-ci/travis-ci#9069)
 sudo: required  # required for Python 3.7 (travis-ci/travis-ci#9069)
-matrix:
-  include:
-    - python: 3.8
-    - python: 3.7
-    - python: 3.6
-    - python: 3.5
-    - python: 2.7
+
+addons:
+  apt:
+    sources:
+      - deadsnakes
+    packages:
+      - python3.5
+      - python3.6
+      - python3.8
+      - pypy
 
 install:
   - pip install tox
