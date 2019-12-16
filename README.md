@@ -2,8 +2,10 @@
 Convert from one numeric system to other in python.
 Supports following:
 * roman numerals
+* positional numerals (like binary, arabic (decimal), hexadecimal and others)
 
 # Example of usage
+## Roman
 ```python
 >>> import numeral_system
 >>> numeral_system.roman.encode(7)
@@ -13,6 +15,21 @@ Supports following:
 >>>
 ```
 
+## Positional
+```python
+>>> import numeral_system
+>>> numeral_system.positional.encode(42, 2)
+'101010'
+>>> numeral_system.positional.encode(12, 3)
+'110'
+>>> numeral_system.positional.decode(101, 2)
+5
+>>> numeral_system.positional.decode('AF', 16)
+175
+>>>
+```
+
+# Links
 [![Release](https://img.shields.io/github/release/zifter/numeral-system-py.svg)][releases-url]
 [![Supported versions](https://img.shields.io/pypi/pyversions/numeral-system.svg)][pypi-url]
 [![Code Coverage](https://codecov.io/gh/zifter/numeral-system-py/branch/master/graph/badge.svg)][codecov-url]
