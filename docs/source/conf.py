@@ -20,7 +20,7 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'numeral-system-py'
+project = numeral_system.__full_name__
 copyright = f'2019, {numeral_system.__author__}'
 author = numeral_system.__author__
 
