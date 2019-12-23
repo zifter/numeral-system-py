@@ -21,8 +21,8 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'numeral-system-py'
-copyright = '2019, Oleg Strokachuk'
-author = 'Oleg Strokachuk'
+copyright = f'2019, {numeral_system.__author__}'
+author = numeral_system.__author__
 
 # The full version, including alpha/beta/rc tags
 release = numeral_system.__version__
