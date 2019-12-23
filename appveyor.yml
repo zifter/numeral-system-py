@@ -8,4 +8,4 @@ install:
     C:\\Python37\\Scripts\\pip3.exe install tox
 build: off
 test_script:
-- cmd: tox
+- cmd: C:\\Python37\\Scripts\\tox
