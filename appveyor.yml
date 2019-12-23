@@ -3,9 +3,8 @@ init:
 - cmd: choco install python.pypy
 install:
 - cmd: >-
-    python -m pip install --upgrade pip
-
-    pip install tox
+    C:\\Python37\\python.exe -m pip install --upgrade pip
+    C:\\Python37\\Scripts\\pip3.exe install tox
 build: off
 test_script:
 - cmd: tox
