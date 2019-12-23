@@ -4,6 +4,7 @@ init:
 install:
 - cmd: >-
     C:\\Python37\\python.exe -m pip install --upgrade pip
+
     C:\\Python37\\Scripts\\pip3.exe install tox
 build: off
 test_script:
