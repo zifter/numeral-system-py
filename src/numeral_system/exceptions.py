@@ -11,23 +11,23 @@ class NumericSystemException(BaseException):
 
 class WrongArgumentTypeError(NumericSystemException):
     """
-    Occuries when argument type is wrong
+    Occurs when argument type is wrong
     """
 
 
 class WrongArgumentValueError(NumericSystemException):
     """
-    Occuries when argument value is wrong
+    Occurs when argument value is wrong
     """
 
 
 class NumberOutOfRangeError(NumericSystemException):
     """
-    Occuries when number can't be converted to necessary numeric system
+    Occurs when number can't be converted to necessary numeric system
     """
 
 
 class IncorrectNumberRepresentationError(NumericSystemException):
     """
-    Occuries when representation of number is incorrect according to numeric system
+    Occurs when representation of number is incorrect according to numeric system
     """
