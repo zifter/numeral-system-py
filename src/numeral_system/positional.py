@@ -5,16 +5,16 @@ The most used are binary, octal, decimal and hexadecimal
 import numbers
 from itertools import groupby
 
+from .exceptions import WrongArgumentTypeError, WrongArgumentValueError
+
 try:
     from functools import lru_cache
 except ImportError:
     from backports.functools_lru_cache import lru_cache
 
-from .exceptions import WrongArgumentValueError, WrongArgumentTypeError
 
-
-_DEFAULT_ALPHABET = tuple('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-_DEFAULT_SIGN = '-'
+_DEFAULT_ALPHABET = tuple("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+_DEFAULT_SIGN = "-"
 
 
 def max_base(alphabet=_DEFAULT_ALPHABET):
@@ -65,8 +65,12 @@ def _map_digit_to_int(alphabet):
     mapping = {digit: i for i, digit in enumerate(alphabet)}
 
     if len(mapping) != len(alphabet):
-        grouped_data = [digit for digit, group in groupby(sorted(alphabet)) if len(list(group)) > 1]
-        raise WrongArgumentValueError('Duplicated symbols in alphabet {}'.format(grouped_data))
+        grouped_data = [
+            digit for digit, group in groupby(sorted(alphabet)) if len(list(group)) > 1
+        ]
+        raise WrongArgumentValueError(
+            "Duplicated symbols in alphabet {}".format(grouped_data)
+        )
 
     return mapping
 
@@ -82,8 +86,11 @@ def _raise_if_alphabet_is_invalid(base, alphabet):
     :type alphabet: tuple
     """
     if base <= 1 or base > max_base(alphabet=alphabet):
-        raise WrongArgumentValueError('Base should be in range [{}, {}]. Passed base is {}'
-                                      .format(1, max_base(alphabet=alphabet), base))
+        raise WrongArgumentValueError(
+            "Base should be in range [{}, {}]. Passed base is {}".format(
+                1, max_base(alphabet=alphabet), base
+            )
+        )
 
 
 def _split_digits(number, sign_literal):
@@ -168,7 +175,9 @@ def encode(number, base, alphabet=_DEFAULT_ALPHABET, sign_literal=_DEFAULT_SIGN)
         number = int(number)
 
     if not isinstance(number, numbers.Integral):
-        raise WrongArgumentTypeError('Number to encode should be integer, not {}'.format(type(number)))
+        raise WrongArgumentTypeError(
+            "Number to encode should be integer, not {}".format(type(number))
+        )
 
     number = int(number)
     number_sign = _sign(number)
@@ -182,11 +191,11 @@ def encode(number, base, alphabet=_DEFAULT_ALPHABET, sign_literal=_DEFAULT_SIGN)
 
     pos.append(alphabet[number])
 
-    result = ''
+    result = ""
     if number_sign == -1:
         result = sign_literal
 
-    return result + ''.join(reversed(pos))
+    return result + "".join(reversed(pos))
 
 
 def decode(number, base, alphabet=_DEFAULT_ALPHABET, sign_literal=_DEFAULT_SIGN):
@@ -211,15 +220,21 @@ def decode(number, base, alphabet=_DEFAULT_ALPHABET, sign_literal=_DEFAULT_SIGN)
     _raise_if_alphabet_is_invalid(base, alphabet)
 
     if base > 10 and not isinstance(number, str):
-        raise WrongArgumentTypeError('Number to encode with base greater 10 should be string')
+        raise WrongArgumentTypeError(
+            "Number to encode with base greater 10 should be string"
+        )
 
     if base <= 10 and not isinstance(number, (int, str)):
-        raise WrongArgumentTypeError('Number to encode with base less or equal 10 should be string or integer')
+        raise WrongArgumentTypeError(
+            "Number to encode with base less or equal 10 should be string or integer"
+        )
 
     sign, digits = _split_digits(number, sign_literal)
     mapping = _map_digit_to_int(alphabet)
     as_literals = reversed(digits)
-    return sign * sum((mapping[digit] * pow(base, index) for index, digit in enumerate(as_literals)))
+    return sign * sum(
+        (mapping[digit] * pow(base, index) for index, digit in enumerate(as_literals))
+    )
 
 
 ########

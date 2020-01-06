@@ -1,4 +1,4 @@
-six
-pytest
-pytest-cov
-parameterized
+six==1.13.0
+pytest==4.6.7
+pytest-cov==2.8.1
+parameterized==0.7.1

@@ -3,24 +3,27 @@ This package contains functions for converting integer into roman and backward
 """
 import re
 
-from .exceptions import WrongArgumentTypeError, NumberOutOfRangeError, IncorrectNumberRepresentationError
-
+from .exceptions import (
+    IncorrectNumberRepresentationError,
+    NumberOutOfRangeError,
+    WrongArgumentTypeError,
+)
 
 # order is important
 _ALPHABET = (
-    (1000, 'M'),
-    (900, 'CM'),
-    (500, 'D'),
-    (400, 'CD'),
-    (100, 'C'),
-    (90, 'XC'),
-    (50, 'L'),
-    (40, 'XL'),
-    (10, 'X'),
-    (9, 'IX'),
-    (5, 'V'),
-    (4, 'IV'),
-    (1, 'I'),
+    (1000, "M"),
+    (900, "CM"),
+    (500, "D"),
+    (400, "CD"),
+    (100, "C"),
+    (90, "XC"),
+    (50, "L"),
+    (40, "XL"),
+    (10, "X"),
+    (9, "IX"),
+    (5, "V"),
+    (4, "IV"),
+    (1, "I"),
 )
 
 
@@ -34,7 +37,9 @@ def is_valid(number):
     :return: True or False
     :rtype: bool
     """
-    return re.match(r'^(M{0,3})(D?C{0,3}|C[DM])(L?X{0,3}|X[LC])(V?I{0,3}|I[VX])$', number)
+    return re.match(
+        r"^(M{0,3})(D?C{0,3}|C[DM])(L?X{0,3}|X[LC])(V?I{0,3}|I[VX])$", number
+    )
 
 
 def encode(number):
@@ -48,19 +53,23 @@ def encode(number):
     :rtype: str
     """
     if not isinstance(number, int):
-        raise WrongArgumentTypeError('Integer number is expected, but {} was given'.format(type(number)))
+        raise WrongArgumentTypeError(
+            "Integer number is expected, but {} was given".format(type(number))
+        )
 
     if number < 0:
-        raise NumberOutOfRangeError('Negative values are not allowed in roman')
+        raise NumberOutOfRangeError("Negative values are not allowed in roman")
 
     if number == 0:
-        raise NumberOutOfRangeError('Zero values is not allowed in roman')
+        raise NumberOutOfRangeError("Zero values is not allowed in roman")
 
     if number > 3999:
-        raise NumberOutOfRangeError(r'Number is too big - roman numbers can\'t be greater or equal 4000')
+        raise NumberOutOfRangeError(
+            r"Number is too big - roman numbers can\'t be greater or equal 4000"
+        )
 
     # TODO Binary search
-    result = ''
+    result = ""
     for num, view in _ALPHABET:
         while number >= num:
             number -= num
@@ -80,11 +89,16 @@ def decode(number):
     :rtype: int
     """
     if not isinstance(number, str):
-        raise WrongArgumentTypeError('Wrong type of roman number: expected string but {} was given'
-                                     .format(type(number)))
+        raise WrongArgumentTypeError(
+            "Wrong type of roman number: expected string but {} was given".format(
+                type(number)
+            )
+        )
 
     if not is_valid(number):
-        raise IncorrectNumberRepresentationError('It\'s not a roman string {}'.format(number))
+        raise IncorrectNumberRepresentationError(
+            "It's not a roman string {}".format(number)
+        )
 
     result = 0
     remain = number
@@ -96,7 +110,5 @@ def decode(number):
                 result += num
             else:
                 break
-
-    assert not remain
 
     return result
