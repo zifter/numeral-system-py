@@ -38,7 +38,7 @@ Positional
 
 .. |Release| image:: https://img.shields.io/github/release/zifter/numeral-system-py.svg
    :target: https://github.com/zifter/numeral-system-py/releases
-.. |Supported versions| image:: https://img.shields.io/pypi/pyversions/numeral-system.svg
+.. |Supported versions| image:: https://img.shields.io/pypi/pyversions/numeral-system-py.svg
    :target: https://pypi.org/project/numeral-system/
 .. |Code Coverage| image:: https://codecov.io/gh/zifter/numeral-system-py/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/zifter/numeral-system-py
