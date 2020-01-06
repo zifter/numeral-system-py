@@ -1,4 +1,4 @@
-|Release| |Supported versions| |Code Coverage| |Build status Appveyor| |Build Status Travis CI| |Contact| |License|
+|License| |Release| |Supported versions| |Docs| |Code Coverage| |Build status Appveyor| |Build Status Travis CI| |Contact| |Blog|
 
 numeral-system-py
 =================
@@ -48,5 +48,10 @@ Positional
     :target: https://travis-ci.org/zifter/numeral-system-py
 .. |Contact| image:: https://img.shields.io/badge/telegram-write%20me-blue.svg
     :target:  https://t.me/zifter
+.. |Blog| image:: https://img.shields.io/badge/site-my%20blog-yellow.svg
+    :target:  https://zifter.github.io/
 .. |License| image:: https://img.shields.io/badge/License-MIT-yellow.svg
     :target:  https://opensource.org/licenses/MIT
+.. |Docs| image:: https://readthedocs.org/projects/numeral-system-py/badge/?version=latest&style=flat
+    :target:  https://numeral-system-py.readthedocs.io/en/latest/
+
