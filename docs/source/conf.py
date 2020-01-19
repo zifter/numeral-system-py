@@ -11,21 +11,21 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
-import sys
-sys.path.insert(0, os.path.abspath('./../../src'))
-
-import numeral_system
+import configparser
 
 import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
+_setup_cfg_data = configparser.ConfigParser()
+_setup_cfg_data.read_file(open(os.path.join(os.path.abspath('./../..'), 'setup.cfg')))
 
-project = numeral_system.__full_name__
-copyright = f'2019, {numeral_system.__author__}'
-author = numeral_system.__author__
+project = _setup_cfg_data['metadata']['name']
+author = _setup_cfg_data['metadata']['author']
+copyright = f'2020, {author}'
+
 
 # The full version, including alpha/beta/rc tags
-release = numeral_system.__version__
+release = _setup_cfg_data['metadata']['version']
 
 
 # -- General configuration ---------------------------------------------------
